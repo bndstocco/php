@@ -12,4 +12,7 @@ if ($pontos >= 50){
     echo "Você perdeu 15 pontos";
 }
 
-
+// ternario
+$idade = 15;
+$mensagem = $idade < 18 ? 'Você é menor de idade' : 'Você é maior de idade';
+echo $mensagem;
