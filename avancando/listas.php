@@ -6,4 +6,3 @@ $umaIdade = $idadeList[2];
 
 echo $umaIdade;
 
-//teste
