@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /*No PHP, chaves de arrays que são inteiros, floats, booleanos ou strings representando 
 inteiros são convertidas para inteiros, resultando na sobrescrição
@@ -12,6 +12,6 @@ $array = [
     true => 'd'
 ];
 
-foreach ($array as $item){
+foreach ($array as $item) {
     echo $item . PHP_EOL;
 }
