@@ -1,6 +1,6 @@
 <?php
 
-$nome = 'Vinicius Dias';
+$nome = 'Vinicius dos Santos';
 
 $ehDaMinhaFamilia = str_contains($nome, 'Dias');
 
@@ -9,5 +9,3 @@ if ($ehDaMinhaFamilia) {
 } else {
     echo "$nome não é da minha família" . PHP_EOL;
 }
-
-    
