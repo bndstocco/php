@@ -1,12 +1,11 @@
 <?php
 
-$idadeList = [21, 21, 19, 25, 30]; 
+$idadeList = [21, 23, 19, 25, 30, 41, 18];
 
-$idadeVinicius = $idadeList[0];
+list($idadeVinicius, $idadeJoao, $idadeMaria) = $idadeList;
 
-$idadeList[5] = 20;
+$idadeList[] = 20;
 
-foreach ($idadeList as $idade){
+foreach ($idadeList as $idade) {
     echo $idade . PHP_EOL;
 }
-

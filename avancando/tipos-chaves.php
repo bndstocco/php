@@ -1,10 +1,5 @@
 <?php
 
-/*No PHP, chaves de arrays que são inteiros, floats, booleanos ou strings representando 
-inteiros são convertidas para inteiros, resultando na sobrescrição
-de chaves duplicadas.
-*/
-
 $array = [
     1 => 'a',
     '1' => 'b',
