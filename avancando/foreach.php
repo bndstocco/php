@@ -15,7 +15,6 @@ $contasCorrentes = [
     ]
 ];
 
-
 $contasCorrentes['123.456.789-13'] = [
     'titular' => 'Claudia',
     'saldo' => 2000
@@ -26,13 +25,18 @@ $contasCorrentes['123.456.789-14'] = [
     'saldo' => 2002
 ];
 
-
 $contasCorrentes['123.258.852-12'] = [
     'titular' => 'Claudia',
     'saldo' => 2000
 ];
 
+function exibeMensagem($mensagem)
+{
+    echo $mensagem . PHP_EOL;
+}
 
 foreach ($contasCorrentes as $cpf => $conta) {
-    echo $cpf . " " . $conta['titular'] . PHP_EOL;
+    ['titular' => $titular, 'saldo' => $saldo] = $conta;
+    exibeMensagem("$cpf $titular $saldo");
 }
+
