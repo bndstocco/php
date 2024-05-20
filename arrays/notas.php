@@ -1,69 +1,40 @@
 <?php
+
+// Array associativo que contém nomes de alunos como chaves e suas respectivas notas como valores
 $notas = [
-    'Vinicius' => 6,
-    'João' => 8,
-    'Ana' => 10,
-    'Roberto' => 7,
-    'Maria' => 9,
+    'Vinicius' => null,   // Vinicius ainda não tem nota
+    'João' => 8,          // Nota de João
+    'Ana' => 10,          // Nota de Ana
+    'Roberto' => 7,       // Nota de Roberto
+    'Maria' => 9,         // Nota de Maria
 ];
 
-// Ordena em ordem crescente pelos valores
-sort($notas);
-echo "sort:\n";
-var_dump($notas);
-
-// Ordena em ordem decrescente pelos valores
-rsort($notas);
-echo "rsort:\n";
-var_dump($notas);
-
-// Ordena em ordem crescente pelos valores, preservando as chaves
-asort($notas);
-echo "asort:\n";
-var_dump($notas);
-
-// Ordena em ordem decrescente pelos valores, preservando as chaves
-arsort($notas);
-echo "arsort:\n";
-var_dump($notas);
-
-// Ordena em ordem crescente pelas chaves
-ksort($notas);
-echo "ksort:\n";
-var_dump($notas);
-
-// Ordena em ordem decrescente pelas chaves
+// Ordena o array pelas chaves em ordem decrescente
 krsort($notas);
-echo "krsort:\n";
+// Exibe o array ordenado
 var_dump($notas);
 
-// Função de comparação personalizada para usort
-function comparar($a, $b) {
-    if ($a == $b) return 0;
-    return ($a < $b) ? -1 : 1;
+// Verifica se $notas é um array
+if (is_array($notas)) {
+    echo 'Sim, é um array' . PHP_EOL;  // Se for um array, imprime a mensagem
 }
 
-// Ordena usando uma função de comparação personalizada
-usort($notas, 'comparar');
-echo "usort:\n";
-var_dump($notas);
+// Verifica se o array $notas é uma lista (array indexado sequencialmente)
+var_dump(array_is_list($notas));  // Deve retornar false, pois $notas é um array associativo
 
-// Ordena preservando as chaves usando uma função de comparação personalizada
-uasort($notas, 'comparar');
-echo "uasort:\n";
-var_dump($notas);
+// Verifica se a chave 'Ana' existe no array e não é nula
+echo 'Ana fez a prova:' . PHP_EOL;
+var_dump(isset($notas['Ana']));  // Deve retornar true, pois 'Ana' existe e sua nota não é nula
 
-// Ordena pelas chaves usando uma função de comparação personalizada
-uksort($notas, 'comparar');
-echo "uksort:\n";
-var_dump($notas);
+// Verifica se o valor 10 existe no array $notas
+echo 'Alguém tirou 10?' . PHP_EOL;
+var_dump(in_array(10, $notas, true));  // Deve retornar true, pois 10 é uma das notas
 
-// Ordena usando a "ordenação natural"
-natsort($notas);
-echo "natsort:\n";
-var_dump($notas);
+// Procura a chave associada ao valor 10 no array $notas
+echo 'Quem tirou 10?' . PHP_EOL;
+var_dump(array_search(10, $notas, true));  // Deve retornar 'Ana', pois ela tirou 10
 
-// Ordena usando a "ordenação natural" sem diferenciar maiúsculas de minúsculas
-natcasesort($notas);
-echo "natcasesort:\n";
-var_dump($notas);
+// Comentários explicando as funções usadas
+// array_key_exists = verifica se a chave existe no array
+// in_array = verifica se o valor existe no array
+// isset = verifica se a chave existe no array e seu valor não é nulo
