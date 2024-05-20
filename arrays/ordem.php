@@ -1,5 +1,6 @@
 <?php
 
+// Define um array de arrays associativos, cada um representando um aluno e sua respectiva nota
 $notas = [
     [
         'aluno' => 'Maria',
@@ -15,10 +16,12 @@ $notas = [
     ],
 ];
 
-function ordenaNotas(array $nota1, array $nota2): int
-{
+// Ordena o array $notas com base nas notas, em ordem decrescente
+usort($notas, function (array $nota1, array $nota2): int {
+    // Compara as notas dos alunos usando o operador de espaçonave (<=>)
+    // $nota2['nota'] <=> $nota1['nota'] faz a ordenação decrescente
     return $nota2['nota'] <=> $nota1['nota'];
-}
+});
 
-usort($notas, 'ordenaNotas');
+// Exibe a estrutura do array $notas após a ordenação
 var_dump($notas);
