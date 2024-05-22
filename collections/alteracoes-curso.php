@@ -25,4 +25,4 @@ $curso->adicionaAlunoParaEspera('Ana Maria');
 foreach ($curso->recuperaAlunosEsperando() as $aluno) {
     echo $aluno . PHP_EOL;
 }
-?>
+
