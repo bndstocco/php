@@ -1,19 +1,45 @@
 <?php
 
-require_once '../poo/Conta.php'; // Inclui o arquivo Conta.php que contém a definição da classe Conta
+// Incluindo as classes necessárias
+require_once '../poo/Conta.php';
+require_once '../poo/Titular.php';
+require_once '../poo/CPF.php';
 
-$primeiraConta = new Conta('123.456.789-10', 'Vinicius Dias'); // Cria uma nova instância da classe Conta com CPF e nome do titular
-$primeiraConta->deposita(500); // Deposita R$500 na primeira conta
-$primeiraConta->saca(300); // Saca R$300 da primeira conta
+// Criando um novo titular (Vinicius) com CPF e nome
+$vinicius = new Titular(new CPF('123.456.789-10'), 'Vinicius Dias');
 
-echo $primeiraConta->recuperaNomeTitular() . PHP_EOL; // Exibe o nome do titular da primeira conta
-echo $primeiraConta->recuperaCpfTitular() . PHP_EOL; // Exibe o CPF do titular da primeira conta
-echo $primeiraConta->recuperaSaldo() . PHP_EOL; // Exibe o saldo da primeira conta
+// Criando a primeira conta associada ao titular Vinicius
+$primeiraConta = new Conta($vinicius);
 
-$segundaConta = new Conta('698.549.548-10', 'Patricia'); // Cria uma segunda instância da classe Conta com CPF e nome do titular
-var_dump($segundaConta); // Exibe informações sobre a segunda conta
+// Depositando 500 na primeira conta
+$primeiraConta->deposita(500);
 
-$outra = new Conta('123', 'Abcdefg'); // Cria uma terceira instância da classe Conta com um CPF inválido e nome do titular
-unset($segundaConta); // Destrói a segunda conta
-echo Conta::recuperaNumeroDeContas(); // Exibe o número total de contas
+// Sacando 300 da primeira conta
+$primeiraConta->saca(300); // isso é ok
 
+// Exibindo o nome do titular da primeira conta
+echo $primeiraConta->recuperaNomeTitular() . PHP_EOL;
+
+// Exibindo o CPF do titular da primeira conta
+echo $primeiraConta->recuperaCpfTitular() . PHP_EOL;
+
+// Exibindo o saldo da primeira conta
+echo $primeiraConta->recuperaSaldo() . PHP_EOL;
+
+// Criando um novo titular (Patricia) com CPF e nome
+$patricia = new Titular(new CPF('698.549.548-10'), 'Patricia');
+
+// Criando a segunda conta associada ao titular Patricia
+$segundaConta = new Conta($patricia);
+
+// Exibindo informações sobre a segunda conta
+var_dump($segundaConta);
+
+// Criando uma nova conta sem atribuir a uma variável
+$outra = new Conta(new Titular(new CPF('123.654.789-01'), 'Abcdefg'));
+
+// Removendo a referência para a segunda conta
+unset($segundaConta);
+
+// Exibindo o número total de contas criadas
+echo Conta::recuperaNumeroDeContas();

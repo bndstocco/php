@@ -2,81 +2,92 @@
 
 class Conta
 {
-    private $cpfTitular; // Declaração da variável privada que armazena o CPF do titular da conta
-    private $nomeTitular; // Declaração da variável privada que armazena o nome do titular da conta
-    private $saldo; // Declaração da variável privada que armazena o saldo da conta
-    private static $numeroDeContas = 0; // Declaração da variável estática que armazena o número total de contas
+    // Declaração de propriedades privadas
+    private $titular; // Armazena o titular da conta
+    private $saldo; // Armazena o saldo da conta
+    private static $numeroDeContas = 0; // Armazena o número total de contas criadas
 
-    public function __construct(string $cpfTitular, string $nomeTitular) // Método construtor que é chamado ao criar uma nova instância da classe Conta
+    // Método construtor da classe
+    public function __construct(Titular $titular)
     {
-        $this->cpfTitular = $cpfTitular; // Atribui o CPF do titular à variável cpfTitular
-        $this->validaNomeTitular($nomeTitular); // Chama o método para validar o nome do titular
-        $this->nomeTitular = $nomeTitular; // Atribui o nome do titular à variável nomeTitular
-        $this->saldo = 0; // Inicializa o saldo da conta com zero
+        // Atribui o titular fornecido à propriedade titular
+        $this->titular = $titular;
+        // Inicializa o saldo da conta como 0
+        $this->saldo = 0;
 
-        self::$numeroDeContas++; // Incrementa o número de contas ao criar uma nova conta
+        // Incrementa o número total de contas criadas
+        self::$numeroDeContas++;
     }
 
-    public function __destruct() // Método destrutor que é chamado ao destruir uma instância da classe Conta
+    // Método destrutor da classe
+    public function __destruct()
     {
-        self::$numeroDeContas--; // Decrementa o número de contas ao destruir uma conta
+        // Decrementa o número total de contas ao destruir a instância da classe
+        self::$numeroDeContas--;
     }
 
-    public function saca(float $valorASacar): void // Método para sacar um valor da conta
+    // Método para realizar saques na conta
+    public function saca(float $valorASacar): void
     {
-        if ($valorASacar > $this->saldo) { // Verifica se o valor a sacar é maior que o saldo
-            echo "Saldo indisponível"; // Exibe uma mensagem de saldo indisponível
-            return; // Retorna sem realizar a operação
+        // Verifica se há saldo suficiente para o saque
+        if ($valorASacar > $this->saldo) {
+            echo "Saldo indisponível";
+            return;
         }
 
-        $this->saldo -= $valorASacar; // Subtrai o valor a sacar do saldo
+        // Deduz o valor do saldo da conta
+        $this->saldo -= $valorASacar;
     }
 
-    public function deposita(float $valorADepositar): void // Método para depositar um valor na conta
+    // Método para realizar depósitos na conta
+    public function deposita(float $valorADepositar): void
     {
-        if ($valorADepositar <= 0) { // Verifica se o valor a depositar é menor ou igual a zero
-            echo "Valor precisa ser positivo"; // Exibe uma mensagem de valor inválido
-            return; // Retorna sem realizar a operação
+        // Verifica se o valor do depósito é positivo
+        if ($valorADepositar < 0) {
+            echo "Valor precisa ser positivo";
+            return;
         }
 
-        $this->saldo += $valorADepositar; // Adiciona o valor a depositar ao saldo
+        // Adiciona o valor ao saldo da conta
+        $this->saldo += $valorADepositar;
     }
 
-    public function transfere(float $valorATransferir, Conta $contaDestino): void // Método para transferir um valor para outra conta
+    // Método para transferir saldo para outra conta
+    public function transfere(float $valorATransferir, Conta $contaDestino): void
     {
-        if ($valorATransferir > $this->saldo) { // Verifica se o valor a transferir é maior que o saldo
-            echo "Saldo indisponível"; // Exibe uma mensagem de saldo indisponível
-            return; // Retorna sem realizar a operação
+        // Verifica se há saldo suficiente para a transferência
+        if ($valorATransferir > $this->saldo) {
+            echo "Saldo indisponível";
+            return;
         }
 
-        $this->saca($valorATransferir); // Chama o método saca para subtrair o valor do saldo
-        $contaDestino->deposita($valorATransferir); // Chama o método deposita da conta de destino para adicionar o valor
+        // Realiza o saque na conta atual
+        $this->saca($valorATransferir);
+        // Realiza o depósito na conta de destino
+        $contaDestino->deposita($valorATransferir);
     }
 
-    public function recuperaSaldo(): float // Método para recuperar o saldo da conta
+    // Método para recuperar o saldo da conta
+    public function recuperaSaldo(): float
     {
-        return $this->saldo; // Retorna o saldo
+        return $this->saldo;
     }
 
-    public function recuperaCpfTitular(): string // Método para recuperar o CPF do titular da conta
+    // Método para recuperar o nome do titular da conta
+    public function recuperaNomeTitular(): string
     {
-        return $this->cpfTitular; // Retorna o CPF do titular
+        return $this->titular->recuperaNome();
     }
 
-    public function recuperaNomeTitular(): string // Método para recuperar o nome do titular da conta
+    // Método para recuperar o CPF do titular da conta
+    public function recuperaCpfTitular(): string
     {
-        return $this->nomeTitular; // Retorna o nome do titular
+        return $this->titular->recuperaCpf();
     }
 
-    private function validaNomeTitular(string $nomeTitular) // Método privado para validar o nome do titular
+    // Método estático para recuperar o número total de contas criadas
+    public static function recuperaNumeroDeContas(): int
     {
-        if (strlen($nomeTitular) < 5) { // Verifica se o nome do titular tem menos de 5 caracteres
-            throw new Exception("Nome precisa ter pelo menos 5 caracteres"); // Lança uma exceção se o nome for inválido
-        }
-    }
-
-    public static function recuperaNumeroDeContas(): int // Método estático para recuperar o número total de contas
-    {
-        return self::$numeroDeContas; // Retorna o número total de contas
+        return self::$numeroDeContas;
     }
 }
