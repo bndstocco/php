@@ -33,8 +33,8 @@ class Conta
             return;
         }
 
-        $this->sacar($valorATransferir);
-        $contaDestino->depositar($valorATransferir);
+        $this->saca($valorATransferir); // Correção aqui
+        $contaDestino->deposita($valorATransferir); // Correção aqui
     }
 
     public function recuperaSaldo(): float
