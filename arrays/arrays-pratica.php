@@ -19,3 +19,4 @@ echo "Total: " . count($array) . PHP_EOL;
 
 //verifica se o array é uma lista, se sim retorna true
 var_dump(array_is_list($array));
+
