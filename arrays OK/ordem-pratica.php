@@ -16,7 +16,6 @@ $notas = [
     ],
 ];
 
-
 // Ordena o array $notas com base nas notas, em ordem decrescente
 usort($notas, function (array $nota1, array $nota2): int {
     // Compara as notas dos alunos usando o operador de espaçonave (<=>)
