@@ -1,49 +1,44 @@
 <?php
 
 // Incluindo o arquivo 'funcoes.php', que contém algumas funções auxiliares
-require_once 'funcoes.php';
+require_once '../avancando/funcoes.php';
 
 // Definindo um array associativo de contas correntes
 $contasCorrentes = [
-    '123.456.789-10' => [
+    '038.928.540-41' => [
         'titular' => 'Maria',
-        'saldo' => 10000
+        'saldo' => 1000
     ],
-    '123.456.689-11' => [
-        'titular' => 'Alberto',
-        'saldo' => 300
+    '038.928.540-42' => [
+        'titular' => 'jose',
+        'saldo' => 2000
     ],
-    '123.256.789-12' => [
-        'titular' => 'Vinicius',
-        'saldo' => 100
-    ]
+    '038.928.540-43' => [
+        'titular' => 'joao',
+        'saldo' => 5000
+    ],
 ];
-
 // Realizando algumas operações nas contas correntes
-
 // Sacando 500 unidades da conta com o CPF '123.456.789-10'
-$contasCorrentes['123.456.789-10'] = sacar(
-    $contasCorrentes['123.456.789-10'],
-    500
+$contasCorrentes['038.928.540-41'] = sacar (
+    $contasCorrentes['038.928.540-41'],
+    300
 );
-
 // Sacando 200 unidades da conta com o CPF '123.456.689-11'
-$contasCorrentes['123.456.689-11'] = sacar(
-    $contasCorrentes['123.456.689-11'],
+$contasCorrentes['038.928.540-42'] = sacar (
+    $contasCorrentes['038.928.540-42'],
     200
 );
-
 // Depositando 900 unidades na conta com o CPF '123.256.789-12'
-$contasCorrentes['123.256.789-12'] = depositar(
-    $contasCorrentes['123.256.789-12'],
+$contasCorrentes['038.928.540-43'] = depositar (
+    $contasCorrentes['038.928.540-43'],
     900
 );
-
 // Removendo a conta com o CPF '123.456.689-11'
-unset($contasCorrentes['123.456.689-11']);
+unset($contasCorrentes['038.928.540-42']);
 
 // Convertendo o nome do titular da conta com o CPF '123.256.789-12' para letras maiúsculas
-titularComLetrasMaiusculas($contasCorrentes['123.256.789-12']);
+titularComLetrasMaiusculas($contasCorrentes['038.928.540-41']);
 ?>
 
 <!doctype html>
