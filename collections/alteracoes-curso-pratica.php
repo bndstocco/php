@@ -48,3 +48,4 @@ $patriciaEstaMatriculada = $curso
 
 // Imprime o resultado da verificação (booleano)
 var_dump($patriciaEstaMatriculada);
+
