@@ -30,7 +30,7 @@ function depositar(array $conta, float $valorADepositar): array
     // Verifica se o valor a ser depositado é maior que zero
     if ($valorADepositar > 0) {
         // Se for, adiciona o valor ao saldo da conta
-        $conta['saldo'] = +$valorADepositar;
+        $conta['saldo'] =+ $valorADepositar;
     } else {
         exibeMensagem('Depositos precisam ser positivos');
     }
