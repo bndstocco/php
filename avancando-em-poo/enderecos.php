@@ -1,11 +1,19 @@
 <?php
 
-use Alura\Banco\Modelo\Endereco;
+namespace Alura\Banco\Modelo; // Certifique-se de que o namespace está correto
 
-require_once 'autoload.php';
+class Endereco
+{
+    private $cidade;
+    private $bairro;
+    private $logradouro;
+    private $numero;
 
-$umEndereco = new Endereco('Petrópolis', 'bairro Qualquer', 'Minha rua', '71B');
-$outroEndereco = new Endereco('Rio', 'Centro', 'Uma rua aí', '50');
+    // Construtor e outros métodos...
 
-echo $umEndereco . PHP_EOL;
-echo $outroEndereco;
+    // Método mágico para converter o objeto Endereco em uma string
+    public function __toString(): string
+    {
+        return "{$this->logradouro}, {$this->numero} - {$this->bairro}, {$this->cidade}";
+    }
+}
