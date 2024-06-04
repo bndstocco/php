@@ -4,21 +4,15 @@ namespace Alura\Banco\Modelo\Conta;
 
 abstract class Conta
 {
-    private $titular;
-    protected $saldo;
-    private static $numeroDeContas = 0;
+    protected float $saldo;
+    private Titular $titular;
+    private static int $numeroDeContas = 0;
 
     public function __construct(Titular $titular)
     {
         $this->titular = $titular;
         $this->saldo = 0;
-
         self::$numeroDeContas++;
-    }
-
-    public function __destruct()
-    {
-        self::$numeroDeContas--;
     }
 
     public function saca(float $valorASacar): void
@@ -26,20 +20,18 @@ abstract class Conta
         $tarifaSaque = $valorASacar * $this->percentualTarifa();
         $valorSaque = $valorASacar + $tarifaSaque;
         if ($valorSaque > $this->saldo) {
-            echo "Saldo indisponível";
+            echo "Saldo insuficiente para saque";
             return;
         }
-
         $this->saldo -= $valorSaque;
     }
 
     public function deposita(float $valorADepositar): void
     {
-        if ($valorADepositar < 0) {
-            echo "Valor precisa ser positivo";
+        if ($valorADepositar <= 0) {
+            echo "Valor do depósito deve ser positivo";
             return;
         }
-
         $this->saldo += $valorADepositar;
     }
 
@@ -47,6 +39,13 @@ abstract class Conta
     {
         return $this->saldo;
     }
+
+    public static function recuperaNumeroDeContas(): int
+    {
+        return self::$numeroDeContas;
+    }
+
+    abstract protected function percentualTarifa(): float;
 
     public function recuperaNomeTitular(): string
     {
@@ -57,11 +56,4 @@ abstract class Conta
     {
         return $this->titular->recuperaCpf();
     }
-
-    public static function recuperaNumeroDeContas(): int
-    {
-        return self::$numeroDeContas;
-    }
-
-    abstract protected function percentualTarifa(): float;
 }
