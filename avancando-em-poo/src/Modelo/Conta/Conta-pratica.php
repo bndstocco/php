@@ -47,41 +47,44 @@ abstract class Conta
     }
 
     // Método para depositar um valor na conta
+    public function deposita(float $valorADepositar): void
     {
         // Verifica se o valor do depósito é positivo
-        {
+        if ($valorADepositar <= 0) {
             // Exibe uma mensagem de erro se o valor for inválido
-            
+            echo "Valor do depósito deve ser positivo";
             return;
         }
         
         // Adiciona o valor depositado ao saldo da conta
-        
+        $this->saldo += $valorADepositar;
     }
 
     // Método para recuperar o saldo atual da conta
+    public function recuperaSaldo(): float
     {
-        
+        return $this->saldo;
     }
 
     // Método estático para recuperar o número total de contas criadas
+    public static function recuperaNumeroDeContas(): int
     {
-        
+        return self::$numeroDeContas;
     }
 
     // Método abstrato que deve ser implementado pelas subclasses para definir a tarifa
-    {
-
-    }
-
+    abstract protected function percentualTarifa(): float;
+   
     // Método para recuperar o nome do titular da conta
+    public function recuperaNomeTitular(): string
     {
-
+        return $this->titular->recuperaNome();
     }
 
     // Método para recuperar o CPF do titular da conta
+    public function recuperaCpfTitular(): string
     {
-
+        return $this->titular->recuperaCpf();
     }
 }
 
