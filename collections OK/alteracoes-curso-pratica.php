@@ -1,6 +1,6 @@
 <?php
 
-// Inclui os arquivos das classes Curso  Aluno
+// Inclui os arquivos das classes Curso e Aluno
 require_once 'Curso.php';
 require_once 'Aluno.php';
 
