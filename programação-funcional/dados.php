@@ -2,6 +2,7 @@
 
 use Alura\Fp\Maybe;
 
+// Retorna um objeto Maybe contendo um array de países e suas medalhas
 return Maybe::of([
     [
         "pais" => "Brasil",
